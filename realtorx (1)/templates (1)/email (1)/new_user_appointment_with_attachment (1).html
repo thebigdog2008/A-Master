@@ -1,0 +1,9 @@
+{% extends "email/base.html" %}
+
+{% block subject %}{{ block.super }} Unread messages.{% endblock %}
+
+{% block content %}
+  <h2 style="color: #203564; font-weight: normal">You have booked a new showing with  {{ user_full_name }}</h2>
+  <h2 style="color: #203564; font-weight: normal">Date: {{ appointment_date }}.</h2>
+  <h2 style="color: #203564; font-weight: normal">Address: {{ house_address }}.</h2>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "email/email_base.html" %}
+
+
+{% block subject %}Account confirmation{% endblock %}
+
+
+{% block plain %}
+Greetings, {{ user.get_full_name }}!
+
+Please follow the link below to confirm your account.
+http://{{ site.domain }}{{ user.get_confirm_account_url }}
+
+If you receive this letter, but didn’t sign up, you can safely ignore it.
+{% endblock %}
+
+
+{% block content %}
+  <p class="heading">
+    Greetings, {{ user.get_full_name }}!
+  </p>
+  <p>Please follow the link below to confirm your account. <br/>
+    <a href="http://{{ site.domain }}{{ user.get_confirm_account_url }}">confirm your account</a></p>
+  <br/>
+  <p class="extra-info"><i>If you receive this letter, but didn’t sign up, you can safely ignore it.</i></p>
+{% endblock %}

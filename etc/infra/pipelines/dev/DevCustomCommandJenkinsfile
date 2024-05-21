@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+    
+    parameters { 
+        string(name: 'COMMIT', defaultValue: '', description: 'Enter the commit hash or branch name that you would like to build & deploy.')
+        string(name: 'CUSTOM_MANAGE_COMMAND', defaultValue: 'migrate_schemas', description: 'run migrations')
+        choice(name: 'ENVIRONMENT', choices: ['prod'], description: 'Choose the environment you want to deploy to.')
+    }
+     environment {
+        CODEBUILD_PROJECT     = 'general-build-stg-io'
+    }
+    options {
+        disableConcurrentBuilds()
+        parallelsAlwaysFailFast()
+}
+    stages {
+        stage('Setup') {
+            steps{
+            echo "DEBUG: parameter COMMIT = ${params.COMMIT}"
+            echo "DEBUG: parameter CUSTOM_MANAGE_COMMAND = ${params.CUSTOM_MANAGE_COMMAND}"
+            echo "DEBUG: parameter ENVIRONMENT = ${params.ENVIRONMENT}"
+            echo "DEBUG: env value CODEBUILD_PROJECT = ${CODEBUILD_PROJECT}"
+            script {
+                if ( COMMIT != '') {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: params.COMMIT]],
+                        userRemoteConfigs: scm.userRemoteConfigs
+                        ])
+                    echo "Checked out commit ${params.COMMIT}"
+                } else {
+                    echo "! Please provide a commit hash or branch name for the pipeline. Build is stopping now."
+                    error("! Build failed because commit hash or branch name not found.")
+                    }
+                }
+            }
+        } // end stage Setup
+        stage('CustomManageStep') {
+            environment { 
+                BUILDSPEC_FILE = 'etc/infra/pipelines/dev/custommanagestep.yaml' 
+            }
+            steps {
+                echo "### starting stage CustomManageStep ###"
+                echo "CodeBuild project name: ${CODEBUILD_PROJECT}"
+                echo "BUILDSPEC_FILE: ${BUILDSPEC_FILE}"
+                script{
+                    awsCodeBuild    projectName: "${CODEBUILD_PROJECT}",
+                                    buildSpecFile: "${BUILDSPEC_FILE}",
+                                    envVariables: "[ { ENVIRONMENT, $params.ENVIRONMENT }, { GIT_URL, $GIT_URL }, { GIT_BRANCH, $GIT_BRANCH }, { GIT_COMMIT, $GIT_COMMIT }, { IMAGE_ID, $params.IMAGE_ID }, { UNITTESTS, $params.UNITTESTS }, { CUSTOM_MANAGE_COMMAND, $params.CUSTOM_MANAGE_COMMAND } ]",
+                                    credentialsType: 'keys',
+                                    region: 'us-west-1',
+                                    sourceControlType: 'jenkins'
+                }
+            }
+        } // end stage CustomManageStep
+   } // end Stages 
+}
+
+       

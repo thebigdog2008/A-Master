@@ -1,0 +1,42 @@
+FROM python:3.9.1
+
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && \
+    apt-get install supervisor -y
+
+RUN apt-get install -y --no-install-recommends \
+    build-essential \
+    libcurl4-openssl-dev \
+    libjpeg-dev \
+    vim \
+    ntp \
+    libpq-dev \
+    git-core \
+    python3-dev \
+    software-properties-common \
+    python-setuptools \
+    postgresql-client \
+    libpq-dev \
+    python-psycopg2 \
+    python-gdal \
+    gdal-bin \
+    libgdal-dev \
+    libgdal20 \
+    libxml2-dev \
+    libxslt-dev \
+    xmlsec1
+
+WORKDIR /home/api
+
+RUN mkdir -p /var/log/list_hub
+
+COPY ../requirements /requirements
+
+RUN pip install -r /requirements/local.txt
+
+COPY ../local_supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+COPY ../ .
+
+CMD ["/usr/bin/supervisord"]

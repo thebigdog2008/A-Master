@@ -1,0 +1,74 @@
+{% load static %}
+
+{% block html %}
+<!DOCTYPE html>
+<html lang="en" style="color: black;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style>
+        *{ margin:0;padding:0;box-sizing:border-box; }
+        html{ font-size:62.5%; }
+        .text,.btn{ font-size:2.8rem }
+        .container{ padding-top:10rem; }
+        .content{ padding:12rem 2rem 3rem 2rem;display:flex;flex-direction:column;align-items:center; }
+        #btn_link{ margin-top:10rem; }
+        @media(max-width:1500px){ html{ font-size: 60%; }}
+        @media(max-width:1080px){ html{ font-size: 57.5%; } .header{ margin:0 2rem; } .content{ padding:6rem 3.5rem 3rem 3.5rem; } .text,.btn{ font-size:2.2rem }}
+        @media(max-width:767px){ html{ font-size: 55%; } .container{ padding-top:5rem; } #btn_link{ margin-top: 7rem; }}
+        @media(max-width:575px){ html{ font-size: 52.5%; }}
+    </style>
+    <script>
+        window.onload = function checkUserPlatform(){
+            var userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
+            var text_container = document.getElementById('text_container');
+            var p1 = document.getElementById('p1');
+            var p2 = document.getElementById('p2');
+            var p3 = document.getElementById('p3');
+            var btn_link = document.getElementById('btn_link');
+            var btn = document.getElementById('btn');
+            if (/android/i.test(userAgent) || ((/iPad|iPhone/i.test(userAgent) && !window.MSStream) || (window.navigator.userAgent.includes("Mac") && "ontouchend" in document))){
+                text_container.style.textAlign = "inherit";
+                p1.innerHTML = `Hi ${decodeURI(window.location.pathname).replace('/ui/store-redirect/', '')}`;
+                p2.innerHTML = "Welcome to AgentLoop, where you get full oversight and control back over your listings data!";
+                p3.innerHTML = `You're about to be taken to your ${/android/i.test(userAgent) ? "play store" : "app store"} to download AgentLoop. It's free and takes less than 30 seconds &#128522;`;
+                btn_link.href = "http://onelink.to/94ys3s";
+                btn.innerHTML = "Let's go!";
+            }else{
+                p2.innerHTML = "AgentLoop is an interactive mobile application.";
+                p3.innerHTML = "Please note you can only log in via your mobile device.";
+                btn_link.href = "https://agentloop.us/";
+                btn.innerHTML = "Got it";
+            }
+        }
+    </script>
+</head>
+
+<body style="background-color:white;font-family:sans-serif;color:black;height:100vh;">
+    <div class="container">
+        <div class="header" style="background: #142448; text-align: center;padding:2rem">
+            <img src="{% static 'testing_email_templates/logo.png' %}" alt="" style="width: 25rem;padding: 1.5rem;">
+        </div>
+        <div class="content">
+            <div style="text-align: center;" id="text_container">
+                <p class="text" style="color:black;font-weight:bold;margin-bottom:2rem;" id="p1"></p>
+                <p class="text" style="color:black;font-weight:bold;" id="p2"></p>
+                <p class="text" style="color:black;font-weight:bold;margin-top:2rem;" id="p3"></p>
+            </div>
+            <a id="btn_link">
+                <button id="btn" class="btn" style="background: #142448;color: white;border:none;border-radius: 10px;padding: 2.5rem 6.5rem;cursor: pointer;">
+                </button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

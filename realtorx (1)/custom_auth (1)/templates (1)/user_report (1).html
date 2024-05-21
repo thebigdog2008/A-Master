@@ -1,0 +1,37 @@
+{% extends "admin/base_site.html" %}
+{% block title %}User Report | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block content %}
+
+<div id="content" class="colM">
+  <h1>User Report</h1>
+  <h5>Get a list of users who have logged in during the time period you select.</h5>
+  <h5>The report will be exported as csv.</h5>
+  <br>
+  <div id="content-main">
+      <form action="/api/custom-auth/user-report/" method="post">
+          {% csrf_token %}
+          <div>
+              <fieldset class="module aligned">
+                  <div class="form-row field-username">
+                      <div>
+                          <label class="required" for="from_date">From date:</label><br>
+                          <input type="date" name="from_date" class="vTextField" id="from_date" required>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="form-row field-username">
+                      <div>
+                          <label class="required" for="to_date">To Date:</label><br>
+                          <input type="date" name="to_date" class="vTextField" id="to_date" required>
+                      </div>
+                  </div>
+              </fieldset>
+          </div>
+          <input type="submit" value="Submit">
+      </form>
+  </div>
+  <br class="clear">
+</div>
+
+
+{% endblock content %}

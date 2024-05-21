@@ -1,0 +1,163 @@
+{% load static %}
+{% load custom_auth_extras %}
+
+{% block subject %}{{subject_name}}{% endblock %}
+{% block html %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style>
+      .container{padding:20px !important;width:70%;margin-left:auto;margin-right:auto;}
+      @media(max-width:767px){
+          .container{width:90% !important;margin: 0 auto !important;padding: 0 auto !important;}
+      }
+      @media(max-width:575px){.email_content{padding-left: 15px !important;}}
+      p{color:black;font-size: 18px !important}
+        @media(max-width:767px){p{font-size: 14px !important}}
+    </style>
+</head>
+
+<body style="background-color: #F7F7F7;font-family: sans-serif;">
+    <div class="container" style="padding: 0 10px;">
+        <div class="header" style="background: #142448;text-align: center;">
+            <img src="{% static 'testing_email_templates/logo.png' %}" alt="" style="width: 250px;padding: 25px;">
+        </div>
+
+        <div class="email_content" style="padding:
+        20px 20px 20px 30px;margin: 0 0 30px 0;background-color: white;">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;" colspan="3">
+                        <img src="{{ house_image }}" alt="" class="my-5 home_img" style="width: 100%; max-width: 1920px; height: auto; margin-top: 30px; margin-bottom: 30px;">
+                        <p style="margin: 10px auto;line-height: 24px;">Hi <span class="red bold"
+                                style="color: black;font-weight: bold;"> {{ receive_first_name }}</span></p>
+                    </td>
+                </tr>
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;" colspan="3">
+                        <p style="margin: 10px auto;line-height: 24px;">I thought you might be interested in a SneakPeek of a property I've
+                            just listed in <span class="red" style="color: black;">{{ city }}</span> that is coming soon.
+                        </p>
+                        <p class="my-5"
+                            style="margin: 10px auto;line-height: 24px;margin-top: 25px !important;margin-bottom: 30px !important;">
+                            To view the full listing and give me instant interactive feedback,
+                            please log in to AgentLoop. You can do this by clicking login below
+                            or searching for AgentLoop in the app store.
+                        </p>
+                        <p style="margin: 10px auto;line-height: 24px;">Please use the same email address this email has been sent to, so
+                            you can view the listing.
+                        </p>
+                        <div class="login_btn t-center"
+                            style="background: white;margin: auto;width: 100%;text-align: center !important;">
+                            <div class="t-center" style="text-align: center !important;padding: 10px 0 0 0;">
+                                <a href="{{ login_redirect_url }}" target="_blank">
+                                    <button class="btn" style="background: #142448;color: white;border-radius: 0;font-size: 24px;padding: 8px 32px;">{{ receive_first_name }} Login</button>
+                                </a>
+                            </div>
+                            <p style="text-align: center !important; color: #FF0000;">Please note this Login will only work from a cell phone device</p>
+                        </div>
+                        <table style="background-color:#142448;width:100%;padding:50px 0;">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <img src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/testing_email_templates/logo.png" alt="" style="width:250px;margin: 0 auto;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;padding: 5px 50px 15px;">
+                                        <p style="color: #fff;width: 100%;margin:0;">Giving agents back control of their listings </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="https://www.youtube.com/watch?v=g3F33AHJSck" target="_blank" style="width: 80px;display: flex;margin: 0 auto;">
+                                        <button style="width:100%;padding:0;margin:0;background:transparent;border:none;cursor:pointer;" aria-label="Play">
+                                            <img style="width:100%;" src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/testing_email_templates/yt_play_btn.png" />
+                                        </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;" colspan="2">
+                        <p style="margin: 0;">Best,</p>
+                        <p class="red" style="color: black;margin: 0;">{{ sender_fullname }}</p>
+                        <p class="red" style="color: black;margin: 0;">{{ sender_agency }}</p>
+                        <p class="red" style="color: black;margin: 0;">{{ sender_city }}</p>
+                        <p class="red" style="color: black;margin: 0;">
+                            <a href="tel:{{ sender_phone | phonenumber }}" target="_blank" style="text-decoration: none; color: #15c;">
+                                {{ sender_phone | phonenumber }}
+                            </a>
+                        </p>
+                    </td>
+                    {% if sender_profile %}
+                        <td style="margin: 0;padding: 0;" colspan="1">
+                            <img src="{{ sender_profile }}" height="130" width="130" alt="Profile photo" style="height:130px !important; width: 130px !important; display:block; margin-left: auto;">
+                        </td>
+                    {% endif %}
+                </tr>
+                <tr class="my-5"
+                    style="margin: 0;padding: 0;margin-top: 30px !important;margin-bottom: 30px !important;">
+                    <td class="t-center" style="margin: 0;padding: 0;text-align: center !important;" colspan="3">
+                        <div class="login_btn t-center"
+                            style="background: white;border-bottom: 5px solid #142448;margin: auto;margin-bottom: -10px;padding: 20px 0;width: 100%;text-align: center !important;">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;" colspan="3">
+                        <p class="t-center my-5"
+                            style="margin: 10px auto;line-height: 24px;text-align: center !important;margin-top: 30px !important;margin-bottom: 30px !important;">
+                            AgentLoop gives agents control back over their listings and the industry, which they deserve.
+                        </p>
+                        <p class="t-center my-5"
+                            style="margin: 10px auto;line-height: 24px;text-align: center !important;margin-top: 30px !important;margin-bottom: 30px !important;">
+                            Fully integrated with the MLS, yet unlike every other portal, AgentLoop is
+                            open and transparent, so agents finally know to whom their listing was
+                            sent, who is interested in their properties and who isn't, without a single
+                            call, text message, or email required. It's completely interactive.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <div class="t-center footer"
+            style="border-bottom: 5px solid #142448;text-align: center !important;">
+            </div>
+            <div class="download_section t-center my-5 "
+                style="text-align: center !important;margin-top: 30px !important;margin-bottom: 30px !important;">
+                <a href="https://play.google.com/store/apps/details?id=com.realtorx" style="text-decoration: none;">
+                    <img src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/email_templates/google-pay.png"
+                        alt="">
+
+                </a>
+                <a href="https://apps.apple.com/us/app/agentloop/id1537126469" style="text-decoration: none;">
+                    <img src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/email_templates/app-store.png"
+                        alt="">
+
+                </a>
+            </div>
+        </div>
+
+        <p class="copy-right-text t-center" style="margin: 10px auto;line-height: 24px;text-align: center !important;">
+            © 2022 AgentLoop. All rights reserved. <br>
+            <a href="{{ unsubscribe_url }}" target="_blank" rel="noreferrer">Unsubscribe</a>
+        </p>
+
+    </div>
+</body>
+
+</html>
+{% endblock %}

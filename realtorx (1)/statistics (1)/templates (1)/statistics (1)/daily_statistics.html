@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% block title %}Daily Statistics | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block content %}
+
+<div id="content" class="colM">
+  <h1>Daily Statistics</h1>
+
+  <form action="{% url 'statistics:daily_statistics' %}" method="post">
+    {% csrf_token %}
+    <div>
+      <fieldset class="module aligned">
+        <div class="form-row field-username">
+          <div>
+            <input type="date" name="date" class="vTextField" id="date" required>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+
+  <br>
+
+  <h3>Date : {{ DATE }}</h3>
+  <br>
+  <div id="content-main">
+
+    <table>
+      <tr>
+        <th>Event</th>
+        <th style="padding:13px;padding-left:50px;">Count</th>
+      </tr>
+      {% for key, val in data.items %}
+      <tr>
+        <td>{{ key }}</td>
+        <td style="padding:13px;padding-left:50px;">{{ val }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+  </div>
+  <br class="clear">
+</div>
+
+
+{% endblock content %}

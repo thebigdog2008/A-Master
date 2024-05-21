@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  ${SCHEDULER_CONTAINER_NAME}:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${API_CONTAINER_IMAGE}:${IMAGE_ID}
+    command: celery beat -A realtorx.taskapp -l info
+    working_dir: /code/
+    env_file:
+      - ../../.env
+    ports:
+      - ${SCHEDULER_CONTAINER_PORT}:${SCHEDULER_CONTAINER_PORT}
+    expose:
+      - ${SCHEDULER_CONTAINER_PORT}
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ${SCHEDULER_AWS_LOG_GROUP}
+        awslogs-region: ${REGION}
+        awslogs-stream-prefix: ecs

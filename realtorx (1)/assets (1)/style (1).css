@@ -1,0 +1,108 @@
+body {
+    background: #F7F7F7;
+}
+
+.navbar {
+    background: #142448;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.emai_content {
+    padding: 10px 20px;
+    background: white;
+    margin-top: 40px;
+}
+
+.border-bottom-blue {
+    border: 3px solid #203564;
+    border-radius: 100px;
+}
+
+.btn-primary {
+    background: #203564;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 0;
+    margin: 20px 0;
+}
+
+.btn-primary:hover {
+    background: #203564;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 0;
+    margin: 20px 0;
+}
+
+.btn-primary:focus {
+    box-shadow: none;
+    background: #203564;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 0;
+    margin: 20px 0;
+}
+
+.download_btn {
+    margin: 20px 0px;
+}
+
+.download_btn .btn {
+    padding: 8px;
+    background: black;
+    color: white;
+    border: none;
+    margin: 0 10px;
+    box-shadow: none;
+}
+
+.download_btn .btn p {
+    font-size: 12px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.download_btn .btn h6 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.apple svg path {
+    fill: white;
+}
+
+footer p a {
+    color: black;
+}
+
+footer p a:hover {
+    color: black;
+}
+
+@media(max-width:500px) {
+    .download_btn .btn h6 {
+        font-size: 14px;
+    }
+}
+
+.r {
+    color: red;
+}
+
+.my-5 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: underline;
+    margin: 0;
+    padding: 0;
+    color: black;
+}

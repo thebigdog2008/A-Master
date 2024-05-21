@@ -1,0 +1,9 @@
+{% extends "email/base.html" %}
+
+{% block subject %}{{ block.super }} Calendar Sync Failure.{% endblock %}
+
+{% block content %}
+  <h2 style="color: #0aa8a2; font-weight: normal">You calendar is out of sync</h2>
+  <p style="color: #626467;">We're having trouble updating your calendar.<br/>
+    Please reauthorize syncronization in the `Settings`.</p>
+{% endblock %}

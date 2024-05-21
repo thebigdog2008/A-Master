@@ -1,0 +1,25 @@
+{% load static %}
+
+{% block subject %}Unverified agent account{% endblock %}
+{% block html %}
+
+  {% block content %}
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;"> Hi support team,</p>
+
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;">
+        An agent 4 account has been created and their email has been verified.
+    </p>
+
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;">
+        Please log in to the AgentLoop backend and check the below details to verify their account:
+    </p>
+
+    <p style="color: #000000;font-size: 14px;">{{agent_name}}</p>
+    <p style="color: #000000;font-size: 14px;">{{agent_email}}</p>
+    <p style="color: #000000;font-size: 14px;">{{agent_phone}}</p>
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;">{{brokerage_name}}</p>
+
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;">Regards,<br>AgentLoop</p>
+
+  {% endblock %}
+{% endblock %}

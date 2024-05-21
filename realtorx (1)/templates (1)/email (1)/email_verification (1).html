@@ -1,0 +1,24 @@
+{% load static %}
+
+{% block subject %}{{subject_name}}{% endblock %}
+{% block html %}
+
+  {% block content %}
+    <p style="font-size: 18px;">
+      Hi {{user_name}}
+    </p>
+    <p style="font-size: 18px;">
+      To verify your email address for your AgentLoop account, please
+      <u><i><a href="{{verified_url}}" target="_blank" rel="noreferrer">click here</a></i></u>
+    </p>
+    <p style="font-size: 18px;">
+      Once verified, please log out of the AgentLoop app and log back in. This needs to be done to enable AgentLoop to populate your account with all your current listings and insights.
+    </p>
+    <p style="font-size: 18px;">
+      If you didn't request this email validation, please
+      <u><i><a href="https://mail.google.com/mail/u/0/?fs=1&to=support@agentloop.us&tf=cm" target="_blank" rel="noreferrer">click here</a></i></u>
+    </p>
+    <p style="font-size: 18px;">Regards,</p>
+    <p style="font-size: 18px;margin-top: -15px;">AgentLoop team</p><br>
+  {% endblock %}
+{% endblock %}

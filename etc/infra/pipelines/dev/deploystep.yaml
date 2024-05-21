@@ -1,0 +1,64 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    AWS_DEFAULT_REGION: us-west-1
+    IMAGE_REPO_NAME: agentloop-backend-django
+    AWS_ACCOUNT_ID: 784034317978
+    SECRET_BUCKET: s3://agentloop-secrets-bucket
+    
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Starting install phase...
+
+  pre_build:
+    commands:
+      - echo pre_build phase...
+      - apt-get update
+      - apt-get install jq
+      - curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest
+      - chmod +x /usr/local/bin/ecs-cli
+      - ecs-cli --version
+      - |
+        if  [ "$IMAGE_ID" = "NONE" ]; then
+          echo USING GIT COMMIT
+          export IMAGE_ID=$GIT_COMMIT
+        fi
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo $IMAGE_ID
+      - aws ecr batch-get-image --registry-id $AWS_ACCOUNT_ID  --repository-name $IMAGE_REPO_NAME --image-ids imageTag=$IMAGE_ID > image_result.json
+      - RESULT=$(jq '.failures | length' image_result.json) && rm image_result.json
+      - echo $RESULT
+      - |
+        if  [ "$RESULT" -gt "0" ]; then
+          echo IMAGE NOT FOUND
+          aws codebuild stop-build
+        fi
+      - aws s3 cp $SECRET_BUCKET/$IMAGE_REPO_NAME/$ENVIRONMENT/ etc/infra/ --recursive --region $AWS_DEFAULT_REGION   
+      - chmod +x etc/infra/parameters-env.sh
+      - . ./etc/infra/parameters-env.sh
+      - cd etc/infra/ecs
+      - rm -rf api/docker-compose.yml; envsubst < "api/docker-compose-template.yml" > "api/docker-compose.yml"
+      - rm -rf api/ecs-params.yml; envsubst < "api/ecs-params-template.yml" > "api/ecs-params.yml"
+      - ecs-cli compose --verbose --file api/docker-compose.yml --project-name $API_PROJECT_NAME  --ecs-params "api/ecs-params.yml" --region $REGION --cluster $ECS_CLUSTER service  up  --deployment-max-percent $API_DEPLOYMENT_MAX_PERCENT --deployment-min-healthy-percent $API_DEPLOYMENT_MIN_HEALTHY_PERCENT --force-deployment  --timeout $TIMEOUT
+      - ecs-cli compose --verbose --file api/docker-compose.yml --project-name $API_PROJECT_NAME  --ecs-params "api/ecs-params.yml" --region $REGION --cluster $ECS_CLUSTER service scale  --deployment-max-percent $API_DEPLOYMENT_MAX_PERCENT --deployment-min-healthy-percent $API_DEPLOYMENT_MIN_HEALTHY_PERCENT --timeout $TIMEOUT $API_DESIRED_INSTANCE
+      - rm -rf worker/docker-compose.yml; envsubst < "worker/docker-compose-template.yml" > "worker/docker-compose.yml"
+      - rm -rf worker/ecs-params.yml; envsubst < "worker/ecs-params-template.yml" > "worker/ecs-params.yml"
+      - ecs-cli compose --verbose --file worker/docker-compose.yml --project-name $WORKER_PROJECT_NAME  --ecs-params "worker/ecs-params.yml" --region $REGION --cluster $ECS_CLUSTER service  up  --deployment-max-percent $WORKER_DEPLOYMENT_MAX_PERCENT --deployment-min-healthy-percent $WORKER_DEPLOYMENT_MIN_HEALTHY_PERCENT --force-deployment  --timeout $TIMEOUT
+      - ecs-cli compose --verbose --file worker/docker-compose.yml --project-name $WORKER_PROJECT_NAME  --ecs-params "worker/ecs-params.yml" --region $REGION --cluster $ECS_CLUSTER service scale  --deployment-max-percent $WORKER_DEPLOYMENT_MAX_PERCENT --deployment-min-healthy-percent $WORKER_DEPLOYMENT_MIN_HEALTHY_PERCENT --timeout $TIMEOUT $WORKER_DESIRED_INSTANCE
+      - rm -rf scheduler/docker-compose.yml; envsubst < "scheduler/docker-compose-template.yml" > "scheduler/docker-compose.yml"
+      - rm -rf scheduler/ecs-params.yml; envsubst < "scheduler/ecs-params-template.yml" > "scheduler/ecs-params.yml"
+      - ecs-cli compose --verbose --file scheduler/docker-compose.yml --project-name $SCHEDULER_PROJECT_NAME  --ecs-params "scheduler/ecs-params.yml" --region $REGION --cluster $ECS_CLUSTER service  up  --deployment-max-percent $SCHEDULER_DEPLOYMENT_MAX_PERCENT --deployment-min-healthy-percent $SCHEDULER_DEPLOYMENT_MIN_HEALTHY_PERCENT --force-deployment  --timeout $TIMEOUT
+      - ecs-cli compose --verbose --file scheduler/docker-compose.yml --project-name $SCHEDULER_PROJECT_NAME  --ecs-params "scheduler/ecs-params.yml" --region $REGION --cluster $ECS_CLUSTER service scale  --deployment-max-percent $SCHEDULER_DEPLOYMENT_MAX_PERCENT --deployment-min-healthy-percent $SCHEDULER_DEPLOYMENT_MIN_HEALTHY_PERCENT --timeout $TIMEOUT $SCHEDULER_DESIRED_INSTANCE
+
+  post_build:
+    commands:
+      - echo Build completed on `date`

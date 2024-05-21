@@ -1,0 +1,301 @@
+{
+    "@odata.context": "http://odata.listhub.moveaws.com/odata/$metadata#Property/$entity",
+    "@odata.id": "http://odata.listhub.moveaws.com/odata/Property('3yd-MRMLSCA-SB22230907')",
+    "ListingKey": "3yd-MRMLSCA-SB22230907",
+    "ModificationTimestamp": "2022-11-06T23:20:43.000Z",
+    "ListingId": "SB22230907",
+    "PropertyType": "Residential",
+    "PropertySubType": "Single Family Residence",
+    "ListPrice": 2200000,
+    "UnparsedAddress": "3201 Highland Avenue",
+    "UnitNumber": null,
+    "PostalCity": "Sterling",
+    "StateOrProvince": "AK",
+    "Country": "US",
+    "PostalCode": "99672",
+    "BathroomsFull": 2,
+    "BathroomsHalf": 0,
+    "BathroomsOneQuarter": 0,
+    "BathroomsThreeQuarter": 0,
+    "BathroomsTotalInteger": 2,
+    "BedroomsTotal": 3,
+    "StandardStatus": "Active",
+    "ListPriceLow": null,
+    "LotSizeAcres": 0.03112947658402204,
+    "LotSizeUnits": "Square Feet",
+    "LotSizeArea": 1356,
+    "LivingArea": 1500,
+    "LivingAreaUnits": "Square Feet",
+    "Latitude": 33.897899,
+    "Longitude": -118.416636,
+    "ListAgentFullName": "Lynn O'Neil",
+    "ListAgentEmail": "lynnoneil@gmail.com",
+    "ListAgentKey": "3yd-MRMLSCA-SONEILYN",
+    "ListAgentMlsId": "SONEILYN",
+    "ListAgentPreferredPhone": "3102610798",
+    "ListAgentOfficePhone": "3105433536",
+    "ListAgentFirstName": "Lynn",
+    "ListAgentLastName": "O'Neil",
+    "ListOfficeKey": "3yd-MRMLSCA-SB1327640",
+    "ListAgentStateLicense": "00880080",
+    "ListOfficeMlsId": "SB1327640",
+    "ListOfficeName": "Beach City Brokers",
+    "SourceSystemName": "California Regional Multiple Listing Service, Inc",
+    "ListOfficePhone": "3105433536",
+    "Disclaimer": "Copyright \u00a9 2022 California Regional Multiple Listing Service, Inc. All rights reserved. All information provided by the listing agent/broker is deemed reliable but is not guaranteed and should be independently verified.",
+    "PublicRemarks": "Fantastic OPPORTUNITY to live at the beach with AWESOME Ocean Views and on a walk street.  New construction next door to west will block some of the views but will still have GREAT views. Location, location, location! This charming 3-bed 2-bath beach house with ocean views is situated just steps from the sand.  Enter at street level with a 2-car attached garage, plus one space on street.  Up one flight to a living area, 1 bedroom, 1 bath, and kitchenette or wet bar, plus deck. Head up to the top floor and WHAM!  The views are to die for...  Spacious living/dining/family area, kitchen, and 2 more bedrooms and 1 bath, plus deck.  Great North MB neighborhood, walk to restaurants, bars, yoga plus the BEACH!",
+    "PhotosCount": 16,
+    "PhotosChangeTimestamp": "2022-10-28T10:34:06.000Z",
+    "SourceSystemID": "MRMLSCA",
+    "YearBuilt": 1968,
+    "YearBuiltEffective": null,
+    "ListingContractDate": "2022-10-28",
+    "ListAgentFax": null,
+    "ListAgentURL": "http://www.lynnoneil.com",
+    "Elevation": null,
+    "BuilderName": null,
+    "Directions": "south of Rosecrans, corner of Highland and 32nd St. (walk streeet)",
+    "CountyOrParish": "Kenai Peninsula Borough",
+    "ParcelNumber": "4175021020",
+    "SubdivisionName": null,
+    "ElementarySchool": null,
+    "MiddleOrJuniorSchool": "MANBEA",
+    "HighSchool": "MIRCOS",
+    "ElementarySchoolDistrict": "Manhattan Unified",
+    "MiddleOrJuniorSchoolDistrict": "Manhattan Unified",
+    "HighSchoolDistrict": "Manhattan Unified",
+    "Appliances": [
+        "Dishwasher",
+        "Garbage Disposer",
+        "Microwave",
+        "Range",
+        "Refrigerator",
+        "Washer"
+    ],
+    "Cooling": [],
+    "ConstructionMaterials": [
+        "Stucco"
+    ],
+    "Flooring": [
+        "Wood"
+    ],
+    "Heating": [
+        "Forced Air"
+    ],
+    "NumberOfUnitsTotal": 1,
+    "FireplaceYN": false,
+    "TaxLegalDescription": null,
+    "TransactionType": "ForSale",
+    "PropertyCondition": [],
+    "StoriesTotal": null,
+    "ParkingTotal": 2,
+    "ParkingFeatures": [
+        "Driveway",
+        "Garage"
+    ],
+    "Roof": [],
+    "View": [
+        "Ocean",
+        "Panorama"
+    ],
+    "WaterfrontYN": false,
+    "OpenHouse": [],
+    "FranchiseAffiliation": null,
+    "InteriorFeatures": [
+        "Balcony",
+        "Bar",
+        "Granite Counters",
+        "Window Features: Roller Shields"
+    ],
+    "ExteriorFeatures": [
+        "Fence",
+        "Community Features Included: Curbs",
+        "Dog Park",
+        "Sidewalks",
+        "Storm Drains",
+        "Street Lights",
+        "Suburban",
+        "Park Nearby",
+        "Sprinkler System",
+        "Walkstreet"
+    ],
+    "WaterfrontFeatures": [],
+    "WindowFeatures": [],
+    "ArchitecturalStyle": [
+        "Other"
+    ],
+    "Rooms": [
+        "Bathroom 1",
+        "Bathroom 2",
+        "Bedroom 1",
+        "Bedroom 2",
+        "Bedroom 3",
+        "Bonus Room",
+        "Den",
+        "Kitchen",
+        "Living Room"
+    ],
+    "SecurityFeatures": [],
+    "OtherStructures": [],
+    "StructureType": [],
+    "Utilities": [],
+    "PatioAndPorchFeatures": [],
+    "AccessibilityFeatures": [],
+    "SpecialListingConditions": [],
+    "EntryLevel": null,
+    "Basement": null,
+    "Dock": null,
+    "AccessibleElevatorInstalled": null,
+    "PoolPrivateYN": false,
+    "SpaYN": false,
+    "Vegetation": [],
+    "Fencing": [
+        "Fenced"
+    ],
+    "InternetAddressDisplayYN": true,
+    "InternetAutomatedValuationDisplayYN": true,
+    "InternetConsumerCommentYN": true,
+    "CustomFields": {
+        "AlternatePrices": [],
+        "Expenses": [],
+        "Neighborhoods": [],
+        "Taxes": [],
+        "ListPriceCurrencyType": "USD",
+        "ListingURL": "https://www.realtor.com/realestateandhomes-detail/3201-Highland-Ave_Manhattan-Beach_CA_90266_M19206-61535?f=listhub&s=MRMLSCA&m=SB22230907&c=agentloop",
+        "LeadRoutingEmail": "lynnoneil@gmail.com",
+        "BrokerName": "Beach City Brokers",
+        "ListingTitle": "Single Family Residence - Sterling, AK",
+        "ListOfficeBrokerMlsId": "SELMIGA",
+        "ListOfficeEmail": "garyelmo@gmail.com",
+        "ListOfficeAddress1": "431 Main St",
+        "ListOfficeCity": "Sterling",
+        "ListOfficePostalCode": "99672",
+        "ListOfficeStateOrProvince": "AK",
+        "ListOfficeCountry": "US",
+        "ListBrokerageName": "Beach City Brokers",
+        "ListBrokeragePhone": "(310) 292-0332",
+        "ListBrokerageEmail": "gary@garyelmo.com",
+        "ListBrokerageWebsiteUrl": "http://www.garyelmo.com",
+        "ListBrokerageLogoUrl": "http://brokerlogos.listhub.net/MRMLSCA/c5ababc31d88782c011d88d837fa00db/20081112202019336.jpeg",
+        "ListBrokerageUnparsedAddress": "200 S PCH",
+        "ListBrokerageCity": "Sterling",
+        "ListBrokerageStateOrProvince": "AK",
+        "ListBrokeragePostalCode": "99672",
+        "ListBrokerageCountry": "US",
+        "MLSModificationTimestamp": "2022-11-06T13:54:26.000Z"
+    },
+    "Location": [
+        -118.416636,
+        33.897899
+    ],
+    "Media": [
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f2426394427r.jpg",
+            "MediaKey": "4b581713ce68dd727562e62a12f4eae8a390c12d",
+            "MediaModificationTimestamp": "2022-10-28T10:33:59.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f1294846054r.jpg",
+            "MediaKey": "b8daa6a0c9c77a8cf62e89be270141896a04b962",
+            "MediaModificationTimestamp": "2022-10-28T10:34:00.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f3520435937r.jpg",
+            "MediaKey": "6e5c63d6e1a923b06a06379ea4596efe38359097",
+            "MediaModificationTimestamp": "2022-10-28T10:34:01.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f242166851r.jpg",
+            "MediaKey": "c2c125f88a34fc344fef0e8942b54893d114c298",
+            "MediaModificationTimestamp": "2022-10-28T10:34:02.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f4019162103r.jpg",
+            "MediaKey": "ae21899358bb29f4b04eef3e08614c0c0f22253c",
+            "MediaModificationTimestamp": "2022-10-28T10:34:02.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f1741336163r.jpg",
+            "MediaKey": "41f43e26bca2577fb7366345cce4e2bf112b52b0",
+            "MediaModificationTimestamp": "2022-10-28T10:34:03.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f3521039947r.jpg",
+            "MediaKey": "329236dd50f3d541ca1b84afb51548be08794386",
+            "MediaModificationTimestamp": "2022-10-28T10:34:04.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f483497645r.jpg",
+            "MediaKey": "d52c6640348a236cb9411258dde54b7499335af2",
+            "MediaModificationTimestamp": "2022-10-28T10:34:04.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f3665356157r.jpg",
+            "MediaKey": "230c8334685126d568441ae4f47c0f43c4cc5a09",
+            "MediaModificationTimestamp": "2022-10-28T10:34:05.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f2045183606r.jpg",
+            "MediaKey": "ae54e45b1efe937d471064ce45371c7558258676",
+            "MediaModificationTimestamp": "2022-10-28T10:34:06.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f616070319r.jpg",
+            "MediaKey": "afa2f756a79943fc9eee75b929f6c8c4d7f8c5c5",
+            "MediaModificationTimestamp": "2022-10-28T10:33:59.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f367444057r.jpg",
+            "MediaKey": "dfc49624a9045299136608cde46a2ba277f81487",
+            "MediaModificationTimestamp": "2022-10-28T10:34:00.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f457350777r.jpg",
+            "MediaKey": "178e311227c5b3a31bf3e8d37303df2f2c61eb2f",
+            "MediaModificationTimestamp": "2022-10-28T10:34:00.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f2485914021r.jpg",
+            "MediaKey": "ef775c04c974d7bb691c24ceff05a235a835492e",
+            "MediaModificationTimestamp": "2022-10-28T10:34:01.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f4191628359r.jpg",
+            "MediaKey": "052e6ae0e465e61f2b2df3f976d45e338f5df317",
+            "MediaModificationTimestamp": "2022-10-28T10:34:01.000Z"
+        },
+        {
+            "MediaCategory": "Photo",
+            "MediaURL": "http://lh.rdcpix.com/720e508fb16fb7d073a83582bcd16c93l-f1824390241r.jpg",
+            "MediaKey": "35776018318b5e5f5156eee40503f066e8f819ba",
+            "MediaModificationTimestamp": "2022-10-28T10:34:02.000Z"
+        },
+        {
+            "MediaCategory": "Branded Virtual Tour",
+            "MediaURL": "https://3201highland.com/#!/",
+            "MediaKey": "418b505c9a2b81bf10d9b6cfcc642b1e15e9fcb5",
+            "MediaModificationTimestamp": "2022-10-28T10:34:06.000Z"
+        },
+        {
+            "MediaCategory": "Unbranded Virtual Tour",
+            "MediaURL": "https://tours.propropertyshots.com/public/vtour/display/2066226?idx=1#!/",
+            "MediaKey": "0b8aaf7ab3823b6ec9815768fd5d49f6e97ca425",
+            "MediaModificationTimestamp": "2022-10-28T10:34:06.000Z"
+        }
+    ]
+}

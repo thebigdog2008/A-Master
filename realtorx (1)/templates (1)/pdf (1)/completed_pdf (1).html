@@ -1,0 +1,183 @@
+{% extends "pdf/pdf_base.html" %}
+{% load humanize static%}
+
+  {% block css %}
+      {% block style_pdf %}
+      {% endblock style_pdf %}
+      p{
+        color: #2d2d2d;
+        font-size: 14px;
+        line-height: 1.3;
+        margin: 0;
+      }
+      table.content td{
+      font-size:15px;
+      font-weight: 600;
+      line-height:20px;
+      }
+      .left-td {
+      width:70%
+      }
+      .right-td {
+      width:30%
+      }
+      .text-color {
+        color: #117fb9;
+      }
+      .text-align-left {
+        text-align: left !important;
+      }
+      .text-align-center {
+        text-align: center;
+      }
+      table.content {
+        width: 100%;
+        border: 0px;
+      }
+      td.logo {
+        text-align: center;
+      }
+      td.logo img {
+        max-width: 200px;
+        width: 170px;
+        height: 70px;
+      }
+      .main_photo{
+              height: 250px;
+              margin:20px;
+              text-align: center;
+              width: 90%;
+<!--              border:2px solid #000000;-->
+      }
+      .main_photo img{
+              width: 35%;
+              height: 250px;
+              display:flex;
+      }
+      img.photo {
+              width: 30%;
+              height: 160px;
+      }
+      td.logo p {
+        letter-spacing: 4px;
+      }
+
+      td.details {
+      word-wrap:break-word;
+      padding-left: 50px;
+
+      }
+
+.box {
+width:100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+padding-left:15px;
+}
+
+.box div{
+max-width:30%;
+min-width:30%;
+max-height:200px;
+min-height:200px;
+<!--margin:10px-->
+}
+  {% endblock %}
+  {% block content %}
+<table class="content header" cellpadding="0">
+  <tbody>
+    <tr>
+      <td class="logo">
+        <img src="{% static 'pdf/img/Agentloop.PNG' %}" alt="Logo">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 class="text-align-center" style="width:65%; margin:auto;">
+  {% if house.hide_address %}
+    {{ house_raw_address }}
+  {% else %}
+    {{ house_raw_address }}
+  {% endif %}
+</h4>
+<br/>
+<br/>
+<br/>
+<table class="content" cellpadding="0" style="width:60%; margin-left:20%;">
+  <tbody>
+    <tr>
+      <td class="details left-td">
+        {{ house_action }}<br/>
+      </td>
+      <td class="right-td">
+        Garage space: {{ house.carparks_count|floatformat}}<br/>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="details">
+        Property type: {{ house.house_type}}<br/>
+      </td>
+      <td>
+        Internal sqft: {{ house.internal_land_size|floatformat}}<br/>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="details">
+        Bedrooms: {{ house.bedrooms_count|floatformat}}<br/>
+      </td>
+      <td>
+        Land sqft: {{ house.land_size|floatformat}}<br/>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="details">
+        Bathrooms: {{ house.baths_count|floatformat}}<br/>
+      </td>
+      <td>
+        Estimated Taxes: {{ house.estimated_taxes|floatformat}}<br/>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      </td>
+      <td>
+        Price: ${{ house.price|floatformat }}<br/>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<div class="photos" style="width:80%; margin:auto;">
+  <div class="main_photo">
+    <img src="{{ main_photo_pdf }}" alt="Photo" />
+  </div>
+  <div class="box">
+      {% for photo in photos %}
+
+  <div>
+    <img style="margin:auto; width:90%; height:100%" src="{{ photo }}" alt="Photo" />
+  </div>
+      {% endfor %}
+</div>
+</div>
+
+<div class="text-align-center" style="width:100%; font-size:20px">
+  <br/><br/><br/><br/>
+  {% if user.avatar_thumbnail_square_url %}
+    <img style="width:150px;"  src="{{ user.avatar_thumbnail_square_url }}" alt="Photo" /><br/>
+  {% endif %}
+  {{ user.full_name|title }}<br/>
+  {{ user.agency.name }}<br/>
+  {% if user.phone %}
+    {{ user.phone }}<br/>
+  {% endif %}
+  {{ user.email }}<br/>
+</div>
+
+{% endblock %}
+

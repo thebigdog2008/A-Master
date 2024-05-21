@@ -1,0 +1,74 @@
+pipeline {
+    agent any
+    parameters { 
+        string(name: 'COMMIT', defaultValue: '', description: 'Enter the commit hash or branch name that you would like to build & deploy.')
+        choice(name: 'ENVIRONMENT', choices: ['prod'], description: 'Choose the environment you want to deploy to.')
+        string(name: 'IMAGE_ID', defaultValue: 'NONE', description: 'Enter a known image id you want to deploy. Leave default to build and deploy a new one.')
+    }
+     environment {
+        CODEBUILD_PROJECT     = 'general-build-io'
+    }
+    options {
+        disableConcurrentBuilds()
+        parallelsAlwaysFailFast()
+}
+    stages {
+        stage('Setup') {
+            steps{
+            echo "DEBUG: parameter COMMIT = ${params.COMMIT}"
+            echo "DEBUG: parameter ENVIRONMENT = ${params.ENVIRONMENT}"
+            echo "DEBUG: parameter IMAGE_ID = ${params.IMAGE_ID}"
+            echo "DEBUG: env value CODEBUILD_PROJECT = ${CODEBUILD_PROJECT}"
+            script {
+                if ( COMMIT != '') {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: params.COMMIT]],
+                        userRemoteConfigs: scm.userRemoteConfigs
+                        ])
+                    echo "Checked out commit ${params.COMMIT}"
+                } else {
+                    echo "! Please provide a commit hash or branch name for the pipeline. Build is stopping now."
+                    error("! Build failed because commit hash or branch name not found.")
+                    }
+                }
+            }
+        } // end stage Setup
+        stage('Build') {
+            environment { 
+                BUILDSPEC_FILE = 'etc/infra/pipelines/dev/buildstep.yaml' 
+            }
+            steps {
+                echo "### starting stage Build ###"
+                echo "CodeBuild project name: ${CODEBUILD_PROJECT}"
+                echo "BUILDSPEC_FILE: ${BUILDSPEC_FILE}"
+                script{
+                    awsCodeBuild    projectName: "${CODEBUILD_PROJECT}",
+                                    buildSpecFile: "${BUILDSPEC_FILE}",
+                                    envVariables: "[ { ENVIRONMENT, $params.ENVIRONMENT }, { GIT_URL, $GIT_URL }, { GIT_BRANCH, $GIT_BRANCH }, { GIT_COMMIT, $GIT_COMMIT }, { IMAGE_ID, $params.IMAGE_ID } ]",
+                                    region: 'us-west-1',
+                                    credentialsType: 'keys',
+                                    sourceControlType: 'jenkins'
+                }
+                }
+        } //end stage Build
+        stage('Deploy') {
+            environment { 
+                BUILDSPEC_FILE = 'etc/infra/pipelines/dev/deploystep.yaml' 
+            }
+            steps {
+                echo "### starting stage Deploy ###"
+                echo "CodeBuild project name: ${CODEBUILD_PROJECT}"
+                echo "BUILDSPEC_FILE: ${BUILDSPEC_FILE}"
+                script{
+                    awsCodeBuild    projectName: "${CODEBUILD_PROJECT}",
+                                    buildSpecFile: "${BUILDSPEC_FILE}",
+                                    envVariables: "[ { ENVIRONMENT, $params.ENVIRONMENT }, { GIT_URL, $GIT_URL }, { GIT_BRANCH, $GIT_BRANCH }, { GIT_COMMIT, $GIT_COMMIT }, { IMAGE_ID, $params.IMAGE_ID } ]",
+                                    credentialsType: 'keys',
+                                    region: 'us-west-1',
+                                    sourceControlType: 'jenkins'
+                    }
+                }
+        } //end stage Deploy
+   } // end Stages
+}

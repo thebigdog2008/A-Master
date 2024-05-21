@@ -1,0 +1,11 @@
+{% extends "email/base.html" %}
+
+{% block subject %}{{ block.super }} Unread messages.{% endblock %}
+
+{% block content %}
+  <h2 style="color: #0aa8a2; font-weight: normal">You have unread messages from:</h2>
+    {% for initiator_fullname in initiators %}
+      <p>{{ initiator_fullname }}</p>
+    {% endfor %}
+  <p style="color: #626467;">Please log in to the application to see them.</p>
+{% endblock %}

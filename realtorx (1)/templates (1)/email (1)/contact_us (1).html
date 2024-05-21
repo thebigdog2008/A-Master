@@ -1,0 +1,15 @@
+{% load static %}
+
+{% block subject %}{{subject_name}}{% endblock %}
+{% block html %}
+
+  {% block content %}
+    <p style="color: #626467;font-weight: normal"><b>User's Name :-</b> {{user_fullname}}</p>
+    <p style="color: #626467;"><b>User's Email :-</b> {{user_email}}</p>
+    <p style="color: #626467;font-weight: normal"><b>Contact Us Type :-</b> {{feedback_type}}</p>
+    <p style="color: #626467;"><b>Description :-</b> {{feedback_description}}</p>
+    {% for data in feedback_images %}
+      <img style="margin:auto; width:180px; height:320px;" src="{{ data }}" alt="Photo" />
+    {% endfor %}
+  {% endblock %}
+{% endblock %}

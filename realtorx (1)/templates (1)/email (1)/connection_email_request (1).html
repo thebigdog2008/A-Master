@@ -1,0 +1,112 @@
+{% load static %}
+
+{% block subject %}{{user_first_name}}, please add me to your AgentLoop network{% endblock %}
+
+{% block html %}
+<style>
+    * {
+        font-family: "Helvetica Neue";
+    }
+
+</style>
+{% block content %}
+<p> Hi {{user_first_name}}, I’d like to join your AgentLoop network.<br>
+  <button style="
+        margin-top: 15px;
+        padding: 10px 25px;
+        background-color: #0073b1;
+        border: none;
+    "><a href="{{accept_url}}" style="
+        color: #fff;
+        text-decoration: none;
+    ">Accept</a></button>
+</p>
+
+<p>AgentLoop is the world's first agent to agent interactive listing,
+  networking and communication platform. The fastest growing real
+  estate platform in America.</p>
+<p>As a registered agent in <b>{{ user_county }} {{ user_state }}</b> your
+  account has already been set up for you, and with 894,000 agents
+  already on AgentLoop, you will find most of your associates in <b>
+    {{ user_city }}</b> are already on the AgentLoop platform</p>
+You can learn more at
+<a href="https://agentloop.us/demo" target="_blank" rel="noreferrer">agentloop.us/demo</a>
+
+<p class="MsoNormal"><b><span style="font-size: 12.0pt;">{{ receiver_name }}</span></b><br>
+  <span style="font-size: 10.5pt;">Agent, {{ receiver_agency }}</span><br>
+  <span style="font-size: 10.5pt; ">{{ receiver_city }}</span><br></p>
+
+{% endblock %}
+
+<div align="center">
+  <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%"
+         style="width: 100.0%; background: #EDF0F3">
+    <tbody>
+    <tr>
+      <td style="padding: 12.0pt 0cm 0cm 0cm">
+        <div align="center">
+          <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100.0%">
+            <tbody>
+            <tr>
+              <td style="padding: 0cm 0cm 12.0pt 0cm">
+                <p class="MsoNormal" align="center" style="text-align: center"><span
+                  style="font-family: &quot;Helvetica Neue&quot;"><a href="{{ unsubscribe_url }}" target="_blank"
+                                                                     rel="noreferrer"><span
+                  style="font-size: 9.0pt; color: #6A6C6D">Unsubscribe</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                  href="https://agentloop.us/" target="_blank" rel="noreferrer"><span style="color: #6A6C6D">
+    </span><span style="font-size: 9.0pt; color: #6A6C6D">Help</span></a><!-- o ignored --></span></p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 0cm 18.0pt 0cm 18.0pt">
+        <div align="center">
+          <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100.0%">
+            <tbody>
+            <tr>
+              <td style="padding: 0cm 0cm 9.0pt 0cm">
+                <p align="center" style="margin: 0cm; text-align: center"><span
+                  style="font-size: 9.0pt; font-family: &quot;Helvetica Neue&quot;; color: #6A6C6D">You are receiving Invitation emails.
+                  <!-- o ignored --></span></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 0cm 0cm 9.0pt 0cm; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%">
+                <p align="center"
+                   style="margin: 0cm; text-align: center; word-break: break-word; -ms-word-break: break-all; overflow-wrap: break-word">
+    <span style="font-size: 9.0pt; font-family: &quot;Helvetica Neue&quot;; color: #6A6C6D">This email was intended for
+    <span>{{ user_name }}</span> (<span>{{ user_phone }}</span>).
+      <!-- o ignored --></span></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 0cm 0cm 6.0pt 0cm; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%">
+                <p class="MsoNormal" align="center" style="text-align: center"><a href="https://agentloop.us/"
+                                                                                  target="_blank" rel="noreferrer"><span
+                  style="font-family: &quot;Helvetica Neue&quot;; color: windowtext; text-decoration: none"><img
+                  border="0" width="94" height="27" style="width: .9761in; height: .2797in" id="Picture_x0020_1"
+                  src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/email_templates/logo.png"></span></a><span
+                  style="font-family: &quot;Helvetica Neue&quot;"><!-- o ignored --></span></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 0cm 0cm 9.0pt 0cm; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%">
+                <p align="center" style="margin: 0cm; text-align: center"><span
+                  style="font-size: 9.0pt; font-family: &quot;Helvetica Neue&quot;; color: #6A6C6D">© 2021 AgentLoop. AgentLoop and the AgentLoop logo are registered trademarks of
+    <a href="https://agentloop.us/" target="_blank" rel="noreferrer">AgentLoop</a>.<!-- o ignored --></span></p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

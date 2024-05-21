@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  ${WORKER_CONTAINER_NAME}:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${API_CONTAINER_IMAGE}:${IMAGE_ID}
+    command: celery -A realtorx.taskapp worker -l info --concurrency=1
+    working_dir: /code/
+    env_file:
+      - ../../.env
+    ports:
+      - ${WORKER_CONTAINER_PORT}:${WORKER_CONTAINER_PORT}
+    expose:
+      - ${WORKER_CONTAINER_PORT}
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ${WORKER_AWS_LOG_GROUP}
+        awslogs-region: ${REGION}
+        awslogs-stream-prefix: ecs
+  Flower:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${API_CONTAINER_IMAGE}:${IMAGE_ID}
+    command: flower -A realtorx.taskapp --address=0.0.0.0 --port=5555
+    working_dir: /code/
+    env_file:
+      - ../../.env
+    ports:
+      - ${FLOWER_CONTAINER_PORT}:${FLOWER_CONTAINER_PORT}
+    expose:
+      - ${FLOWER_CONTAINER_PORT}
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ${FLOWER_AWS_LOG_GROUP}
+        awslogs-region: ${REGION}
+        awslogs-stream-prefix: ecs

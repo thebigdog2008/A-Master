@@ -1,0 +1,99 @@
+{% load static %}
+
+{% block subject %}{{subject_name}}{% endblock %}
+{% block html %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style>
+      .container{padding:20px !important;width:70%;margin-left:auto;margin-right:auto;}
+      @media(max-width:767px){
+          .container{width:90% !important;margin: 0 auto !important;padding: 0 auto !important;}
+      }
+      @media(max-width:575px){.email_content{padding-left: 15px !important;}}
+      p{color:black;font-size: 18px !important}
+    @media(max-width:767px){p{font-size: 14px !important}}
+    </style>
+</head>
+
+<body style="background-color: #F7F7F7;font-family: sans-serif;">
+    <div class="container" style="padding: 0 10px;">
+        <div class="header" style="background: #142448;text-align: center;">
+            <img src="{% static 'testing_email_templates/logo.png' %}" alt="" style="width: 250px;padding: 25px;">
+        </div>
+
+        <div class="email_content" style="padding: 20px 20px 20px 30px;margin: 0 0 30px 0;background-color: white;">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;">
+                        <img src="{{ house_image }}" alt="" class="my-5 home_img" style="width: 100%; max-width: 1920px; height: auto; margin-top: 30px; margin-bottom: 30px;">
+                        <p style="margin: 10px auto;line-height: 24px;">Hi <span class="red bold"
+                                style="color: black;font-weight: bold;"> {{ first_name }}</span></p>
+                    </td>
+                </tr>
+                <tr style="margin: 0;padding: 0;">
+                    <td style="margin: 0;padding: 0;">
+                        <p style="margin: 10px auto;line-height: 24px;">If your seller or landlord for the property listed at <span class="red" style="color: black;">{{ street_address }}, {{ city }}</span> would like to receive a daily update of all new expressions of
+                            interest on their listing on the AgentLoop platform, please forward
+                            them the login details below:
+                        </p>
+
+                        <p style="margin: 18px auto;line-height: 24px;">Username: : {{ listing_key }}
+                        </p>
+                        <p style="margin: 0px auto;line-height: 24px;">password : {{ password }}
+                        </p>
+                        <p class="bold" style="margin: 25px auto;line-height: 24px;font-weight: bold;">They would need to download AgentLoop from the app store and log in under Seller / Landlord.
+                        </p>
+                        <p style="margin: 10px auto;line-height: 24px;">They will NOT be able to view specifically who has expressed
+                            interest in their property for obvious reasons, but they will be able
+                            to see a daily update as to new positive activity if any.
+                        </p>
+                        <p class="my-5"
+                            style="margin: 10px auto;line-height: 24px;margin-top: 30px !important;margin-bottom: 30px !important;">
+                            Best, <br>
+                            AgentLoop Team.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <div class="t-center footer"
+            style="border-bottom: 5px solid #142448;text-align: center !important;">
+            </div>
+            <div class="download_section t-center my-5 "
+                style="text-align: center !important;margin-top: 30px !important;margin-bottom: 30px !important;">
+                <p class="t-center" style="margin: 10px auto;line-height: 24px;text-align: center !important;">Any
+                    questions? visit www.agentloop.us or email <br>
+                    support@agentloop.us</p>
+                <a href="https://play.google.com/store/apps/details?id=com.realtorx" style="text-decoration: none;">
+                    <img src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/email_templates/google-pay.png"
+                        alt="">
+
+                </a>
+                <a href="https://apps.apple.com/us/app/agentloop/id1537126469" style="text-decoration: none;">
+                    <img src="https://realtorx-staging-bucket.s3.us-west-1.amazonaws.com/static/email_templates/app-store.png"
+                        alt="">
+
+                </a>
+            </div>
+        </div>
+
+        <p class="copy-right-text t-center" style="margin: 10px auto;line-height: 24px;text-align: center !important;">
+            © 2022 AgentLoop. All rights reserved. <br>
+            <a href="{{ unsubscribe_url }}" target="_blank" rel="noreferrer">Unsubscribe</a>
+        </p>
+
+    </div>
+</body>
+
+</html>
+{% endblock %}
+

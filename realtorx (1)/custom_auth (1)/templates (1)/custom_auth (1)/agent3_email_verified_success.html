@@ -1,0 +1,61 @@
+{% load static %}
+
+{% block subject %}{{subject_name}}{% endblock %}
+{% block html %}
+<!DOCTYPE html>
+<html lang="en" style="color: black;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style>
+      .container{padding:20px !important;width:70%;margin-left:auto;margin-right:auto;}
+      @media(max-width:767px){
+          .container{width:90% !important;margin: 0 auto !important;padding: 0 auto !important;}
+      }
+        p{color:black;font-size: 18px !important}
+        @media(max-width:767px){p{font-size: 14px !important}}
+
+      .ballon-container{
+        width: 27rem; 
+        height: auto; 
+        display: flex; 
+        justify-content: center;
+        padding-top: 50px ;
+        margin: 0 auto;
+      }
+      @media(max-width:575px){
+            .content{padding-left: 15px !important;}
+            .ballon-container{
+                width: 17rem;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #F7F7F7;font-family: sans-serif;color: black;">
+    <div class="container" style="padding: 0 10px;">
+        <div class="header" style="background: #142448; text-align: center;">
+            <img src="{% static 'testing_email_templates/logo.png' %}" alt="" style="width: 250px;padding: 15px;">
+        </div>
+
+        <div class="content" style="padding: 100px 20px 20px 30px;margin: 0 0 30px 0;background-color: white;">
+            <div style="text-align: center;">
+                <p>Congratulations <span class="red bold" style="color: black; font-weight: bold">
+                    {{ first_name }}!</span></p>
+                <p>You have successfully verified your email on your AgentLoop Account.</p>
+                <p>Your MLS listings will now appear under My listings.</p>
+            </div>
+            <div class="ballon-container"><img style="width: inherit; height:inherit;" src="https://realtorx-prod.s3.us-west-1.amazonaws.com/static/ballons.png" alt=""></div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

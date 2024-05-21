@@ -1,0 +1,24 @@
+{% load static %}
+
+{% block subject %}{{ title }}{% endblock %}
+{% block html %}
+
+  {% block content %}
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;"> Hi support,</p>
+
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;">
+      My Brokerage is not listed in the platform. Please see Brokerage details below:
+    </p>
+
+    <p style="color: #000000;font-size: 14px;">{{brokerage_name}}</p>
+    <p style="color: #000000;font-size: 14px;">{{brokerage_state}}</p>
+    <p style="color: #000000;font-size: 14px;">{{brokerage_county}}</p>
+    <p style="color: #000000;font-size: 14px;">{{brokerage_city}}</p>
+    <p style="color: #000000;font-size: 14px;margin-bottom: 40px;">{{brokerage_phone}}</p>
+
+    <p style="color: #000000;font-size: 14px;">Thanks,</p>
+    <p style="color: #000000;font-size: 14px;">{{user_fullname}}</p>
+    <p style="color: #000000;font-size: 14px;">{{user_phone}}</p>
+    <p style="color: #000000;font-size: 14px;">{{user_email}}</p>
+  {% endblock %}
+{% endblock %}

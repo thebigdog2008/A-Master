@@ -1,0 +1,77 @@
+version: "3.3"
+   
+services:
+  db_local:
+    image: mdillon/postgis
+    env_file:
+      - ../config/settings/env.local
+    ports: 
+      - "5432:5432"
+    volumes:
+      - postgresql_data_local:/var/lib/postgresql/data/
+    container_name: postgres_db_local
+  redis_local:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    env_file:
+      - ../config/settings/env.local
+    ports:
+      - "6379:6379"
+    volumes:
+      # - ./api/redis_conf/redis.conf:/opt/bitnami/redis/mounted-etc/redis.conf
+      - redis_data_local:/bitnami/redis/data
+    container_name: redis_local
+  rabbitmq_local:
+    image: 'bitnami/rabbitmq:latest'
+    env_file:
+      - ../config/settings/env.local
+    ports:
+      - "5672:5672"
+    volumes:
+      - rabbitmq_local_data:/bitnami
+    container_name: rabbitmq_local
+    depends_on: 
+      - redis_local
+  api_local:
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile.local
+    volumes:
+      # - ~/.aws:/root/.aws:ro
+      - ..:/home/api
+      - django_static_files:/home/api/static
+    ports:
+      - "8000:8000"
+      - "9001:9001"
+      # - "5555:5555"
+    env_file:
+      - ../config/settings/env.local
+    image: django_app_local
+    container_name: django_app_local
+    depends_on:
+      - db_local
+      - redis_local
+      - rabbitmq_local
+  celery_local:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.local
+    image: django_app_local
+    volumes:
+      - ..:/home/api
+    ports:
+      - "9002:9001"
+      - "5555:5555"
+    env_file:
+      - ../config/settings/env.local
+    depends_on:
+      - redis_local
+      - db_local
+      - rabbitmq_local
+
+volumes:
+  postgresql_data_local:
+  redis_data_local:
+  rabbitmq_local_data:
+  django_static_files:

@@ -1,0 +1,50 @@
+{% block html %}
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+    body, td{
+      font-family: Helvetica,Arial,sans-serif;
+    }
+    p{
+      color: #2d2d2d;
+      font-size: 18px;
+      line-height: 1.3;
+      margin: 0;
+      padding: 10px 0;
+    }
+    p.heading {
+      text-align: center;
+      font-size: 24pt;
+      font-weight: 700;
+    }
+    p.heading strong {
+    }
+    p.extra-info {
+      font-size: 11pt;
+      color: grey;
+    }
+    {% block css %}
+    .invitation_email{
+        text-align: center;
+    }
+    .invitation_email_code{
+        text-align: center;
+        font-weight: bold;
+        font-size: 21px;
+    }
+
+    {% endblock css %}
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f9f9f9;">
+
+{% block content %}{% endblock %}
+</body>
+</html>
+{% endblock %}

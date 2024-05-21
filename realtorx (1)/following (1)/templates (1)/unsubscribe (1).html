@@ -1,0 +1,41 @@
+{% load static %}
+
+{% block subject %}{{subject_name}}{% endblock %}
+{% block html %}
+<!DOCTYPE html>
+<html lang="en" style="color: black;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style>
+      * {margin:0;padding:0;box-sizing:border-box;}
+      body{background-color:#F7F7F7;font-family:sans-serif;color:black;}
+      .container{width: calc(100% - 50px);margin: 0 auto;height: 100vh;display: flex;flex-direction: column;}
+      .header{background: #142448; text-align: center;margin-top:25px;}
+      p{color:black;font-size:18px !important;}
+      .content{height: inherit;padding: 100px 20px;background-color: white;margin-bottom:25px;}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{% static 'testing_email_templates/logo.png' %}" alt="AgentLoop" style="width: 250px;padding: 15px;">
+        </div>
+        <div class="content">
+            <div style="text-align: center;">
+               <p>{{ message }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

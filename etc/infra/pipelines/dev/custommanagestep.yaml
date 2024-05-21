@@ -1,0 +1,30 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-west-1
+    S3_SECRET_BUCKET: s3://agentloop-secrets-bucket
+    IMAGE_REPO_NAME: agentloop-backend-django
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Starting install phase...
+
+  pre_build:
+    commands:
+      - echo pre_build phase...
+      - aws s3 cp $S3_SECRET_BUCKET/$IMAGE_REPO_NAME/$ENVIRONMENT/ config/settings/ --recursive --region $AWS_DEFAULT_REGION
+      - pip install -r requirements.txt
+
+  build:
+    commands:
+      - echo Python Build started on `date`
+      - chmod +x manage.py
+      - ./manage.py $CUSTOM_MANAGE_COMMAND
+
+  post_build:
+    commands:
+      - echo Build completed on `date`

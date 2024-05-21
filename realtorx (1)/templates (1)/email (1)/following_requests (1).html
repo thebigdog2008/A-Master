@@ -1,0 +1,38 @@
+{% extends "email/base.html" %}
+
+{% block subject %}{{ block.super }} Following requests.{% endblock %}
+
+{% block content %}
+  <h2 style="font-weight: 600">Hi {{user_fullname}},</h2>
+  <p style="color: #626467;">The below associates have requested to connect with you in AgentLoop, the world's first agent to agent interactive listing, networking and communication platform. The fastest growing real estate platform in America.</p>
+  </br>
+  <p style="color: #626467;">As a registered agent in {{ county }} {{ state }} your account has already been set up for you, and with 894,000 agents already on AgentLoop, you will find most of your associates in {{ city }} are already on the AgentLoop platform</p>
+  <div style="border-bottom: solid 1px #d5dede"></div>
+  <div>
+      <p style="font-size:20px; text-align:center; width:100%;">Where Real Estate is in Real Time</p>
+  </div>
+<div>
+    <p style="color: #626467; text-align:center;">Your username is: {{ user_phone }}</p>
+    <p style="color: #626467; text-align:center;">Password is: {{ user_temp_password }}</p>
+</div>
+<div style="background-color:#203564;">
+    <p style="color: white; text-align:center; padding-top:20px;">On your cell? Simply click the link below to login and connect with your connection requests, and start to expand your network instantly.</p>
+  </br>
+      <div style="text-align:center;"><a href="agentloop.us" style="color: white; text-align:center;">www.agentloop.us/platform</a></div>
+  </br>
+    <p style="color: white; text-align:center; margin-bottom:0;">Or seaerch for AgentLoop in the App store.</p>
+    <p style="color: white; text-align:center; padding-bottom:20px; margin-top:0;">A full demonstration video is below</p>
+
+</div>
+  <p style="color: #626467; text-align:center;">Connection requests</p>
+
+  {% for first_name, last_name in connections %}
+<div style="display:flex; justify-content:space-between;">
+    <p style="color: #626467; width:80%">{{ first_name }} {{ last_name }}</p>
+  <p style="color: #626467; width:20%">{{ agency }}</p>
+</div>
+
+
+  {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,47 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+    AWS_DEFAULT_REGION: us-west-1
+    IMAGE_REPO_NAME: agentloop-backend-django
+    AWS_ACCOUNT_ID: 784034317978
+    DOCKERFILE_PATH: etc/docker/Dockerfile
+    SECRET_BUCKET: s3://agentloop-secrets-bucket
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Starting install phase...
+      - apt-get update
+      - apt-get install jq
+
+  pre_build:
+    commands:
+      - echo pre_build phase...
+
+  build:
+    commands:
+      - echo Docker Build started on `date`
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr batch-get-image --registry-id $AWS_ACCOUNT_ID --repository-name $IMAGE_REPO_NAME --image-ids imageTag=$GIT_COMMIT > image_result.json
+      - RESULT=$(jq '.failures | length' image_result.json) && rm image_result.json
+      - echo $RESULT
+      - |
+        if   true; then
+            aws s3 cp $SECRET_BUCKET/$IMAGE_REPO_NAME/$ENVIRONMENT/ etc/infra/ --recursive --region $AWS_DEFAULT_REGION
+          aws s3 cp $SECRET_BUCKET/$IMAGE_REPO_NAME/$ENVIRONMENT/ ./config/settings/ --recursive --region $AWS_DEFAULT_REGION
+          docker build -t $IMAGE_REPO_NAME -f $DOCKERFILE_PATH .
+          docker tag $IMAGE_REPO_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$GIT_COMMIT
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$GIT_COMMIT
+        fi
+      - aws ecr describe-images --registry-id $AWS_ACCOUNT_ID --repository-name $IMAGE_REPO_NAME --image-ids imageTag=$GIT_COMMIT > temp.json
+      - TAG2=$(jq '.imageDetails[0].imageTags' temp.json)
+      - rm temp.json
+      - echo $TAG2
+
+  post_build:
+    commands:
+      - echo Build completed on `date`

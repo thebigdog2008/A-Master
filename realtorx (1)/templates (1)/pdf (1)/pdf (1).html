@@ -1,0 +1,15 @@
+{% extends "pdf/completed_pdf.html" %}
+
+{% block style_pdf %}
+
+@page {
+size: 10in 20in;
+margin: 0cm 0cm 0cm 0cm;
+}
+body {
+    padding: 0 !important;
+    border: none !important;
+    background-color: white !important;
+}
+
+{% endblock style_pdf %}
